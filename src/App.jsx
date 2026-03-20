@@ -25,12 +25,13 @@ import ServiceCard from './components/ServiceCard';
 import AnnouncementCard from './components/AnnouncementCard';
 import SafeImage from './components/SafeImage';
 import Footer from './components/Footer';
+import { DEFAULT_IMAGE, IMAGE_FALLBACKS } from './constants/images';
 
 const STATIC_IMAGES = {
   hero: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644',
   student: 'https://images.unsplash.com/photo-1513258496099-48168024aec0',
   onlineLearning: 'https://images.unsplash.com/photo-1584697964403-7d6f1c36c3f6',
-  books: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353',
+  books: DEFAULT_IMAGE,
   classroom: 'https://images.unsplash.com/photo-1509062522246-3755977927d7',
 };
 
@@ -170,7 +171,7 @@ function App() {
             </button>
           </div>
           <div className="h-72 w-full">
-            <SafeImage src={STATIC_IMAGES.onlineLearning} alt="التعلم عن بعد" />
+            <SafeImage src={STATIC_IMAGES.onlineLearning || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt="التعلم عن بعد" />
           </div>
         </section>
 
@@ -185,7 +186,7 @@ function App() {
 
         <section className="grid lg:grid-cols-2 gap-6 items-center bg-emerald-950 text-white rounded-3xl overflow-hidden">
           <div className="h-full min-h-72 w-full">
-            <SafeImage src={STATIC_IMAGES.onlineLearning} alt="واجهة التعلم الرقمي" />
+            <SafeImage src={STATIC_IMAGES.onlineLearning || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt="واجهة التعلم الرقمي" />
           </div>
           <div className="p-6 md:p-8">
             <SectionTitle title="التعليم الرقمي" subtitle="حلول ذكية لتجربة تعليمية تفاعلية" className="text-white" subtitleClassName="text-emerald-100" />
@@ -250,7 +251,7 @@ function App() {
           </div>
 
           <div className="h-72 w-full">
-            <SafeImage src={STATIC_IMAGES.hero} alt="الدعم والمساعدة" />
+            <SafeImage src={STATIC_IMAGES.hero || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt="الدعم والمساعدة" />
           </div>
         </section>
 

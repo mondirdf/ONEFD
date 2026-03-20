@@ -1,4 +1,5 @@
 import SafeImage from './SafeImage';
+import { DEFAULT_IMAGE, IMAGE_FALLBACKS } from '../constants/images';
 
 const ServiceCard = ({ title, description, icon: Icon, image }) => {
   return (
@@ -9,7 +10,7 @@ const ServiceCard = ({ title, description, icon: Icon, image }) => {
       <h3 className="font-bold text-lg mb-2">{title}</h3>
       <p className="text-sm text-gray-600 leading-6 mb-4">{description}</p>
       <div className="h-28 w-full">
-        <SafeImage src={image} alt={title} />
+        <SafeImage src={image || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt={title} />
       </div>
     </button>
   );

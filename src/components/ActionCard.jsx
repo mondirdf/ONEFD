@@ -1,4 +1,5 @@
 import SafeImage from './SafeImage';
+import { DEFAULT_IMAGE, IMAGE_FALLBACKS } from '../constants/images';
 
 const ActionCard = ({ icon: Icon, title, description, image }) => {
   return (
@@ -11,7 +12,7 @@ const ActionCard = ({ icon: Icon, title, description, image }) => {
           <h3 className="font-bold text-lg mb-1">{title}</h3>
           <p className="text-gray-600 text-sm mb-3">{description}</p>
           <div className="h-20 w-full">
-            <SafeImage src={image} alt={title} />
+            <SafeImage src={image || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt={title} />
           </div>
         </div>
       </div>
