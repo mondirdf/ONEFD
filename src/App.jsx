@@ -23,6 +23,7 @@ import SectionTitle from './components/SectionTitle';
 import ActionCard from './components/ActionCard';
 import ServiceCard from './components/ServiceCard';
 import AnnouncementCard from './components/AnnouncementCard';
+import SafeImage from './components/SafeImage';
 import Footer from './components/Footer';
 
 const trustStats = [
@@ -36,25 +37,41 @@ const quickActions = [
     title: 'التسجيل عبر الإنترنت',
     description: 'بدء أو استكمال التسجيل بسهولة عبر خطوات واضحة.',
     icon: UserCheck,
-    image: 'https://source.unsplash.com/400x300/?student,registration',
+    image: 'https://source.unsplash.com/featured/?student-using-laptop,education',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?student,laptop,online-learning',
+      'https://source.unsplash.com/featured/?education,student,computer',
+    ],
   },
   {
-    title: 'تحميل',
+    title: 'تحميل الدروس',
     description: 'تحميل الملفات، الدروس والوثائق الضرورية بسرعة.',
     icon: Download,
-    image: 'https://source.unsplash.com/400x300/?education,documents,laptop',
+    image: 'https://source.unsplash.com/featured/?studying,books,education',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?books,notes,study',
+      'https://source.unsplash.com/featured/?library,education,study',
+    ],
   },
   {
     title: 'تحضير البكالوريا',
     description: 'خطط دراسية وموارد مخصصة لاجتياز البكالوريا.',
     icon: GraduationCap,
-    image: 'https://source.unsplash.com/400x300/?students,study,exam',
+    image: 'https://source.unsplash.com/featured/?student,studying,exam',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?exam-preparation,student,study',
+      'https://source.unsplash.com/featured/?baccalaureate,study,student',
+    ],
   },
   {
     title: 'تحضير شهادة التعليم المتوسط',
     description: 'مراجعة شاملة وتمارين تطبيقية لشهادة التعليم المتوسط.',
     icon: BookOpen,
-    image: 'https://source.unsplash.com/400x300/?books,learning,classroom',
+    image: 'https://source.unsplash.com/featured/?books,learning,classroom',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?middle-school,study,books',
+      'https://source.unsplash.com/featured/?education,learning,notes',
+    ],
   },
 ];
 
@@ -63,25 +80,29 @@ const services = [
     title: 'جناح التعلم',
     description: 'فضاء موحد لإدارة الدروس، الواجبات، والتتبع اليومي للتعلم.',
     icon: School,
-    image: 'https://source.unsplash.com/500x350/?e-learning,platform,education',
+    image: 'https://source.unsplash.com/featured/?online-learning,technology,education',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?digital-education,tablet,learning',
+      'https://source.unsplash.com/featured/?edtech,online-class,student',
+    ],
   },
   {
     title: 'جناح التكوين',
     description: 'برامج تكوينية تدعم التطور الدراسي والمهارات المهنية.',
     icon: Briefcase,
-    image: 'https://source.unsplash.com/500x350/?training,skills,students',
+    image: 'https://source.unsplash.com/featured/?students,training,classroom',
   },
   {
     title: 'إستشارات',
     description: 'استفد من التوجيه والإرشاد لتحسين المسار التعليمي.',
     icon: MessageCircle,
-    image: 'https://source.unsplash.com/500x350/?consultation,education,mentor',
+    image: 'https://source.unsplash.com/featured/?education,mentor,student',
   },
   {
     title: 'متابعة الملف',
     description: 'تتبع حالة الطلبات والملفات الإدارية بسهولة ووضوح.',
     icon: Layers,
-    image: 'https://source.unsplash.com/500x350/?dashboard,workflow,school',
+    image: 'https://source.unsplash.com/featured/?school,workflow,education',
   },
 ];
 
@@ -107,12 +128,20 @@ const announcements = [
   {
     title: 'إعلانات هامة: تحديثات نتائج المتعلمين للفصل الحالي.',
     date: 'آخر تحديث: مارس 2026',
-    image: 'https://source.unsplash.com/800x600/?announcement,students',
+    image: 'https://source.unsplash.com/featured/?classroom,academic,students',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?university,classroom,education',
+      'https://source.unsplash.com/featured/?school,students,classroom',
+    ],
   },
   {
     title: 'إعلانات هامة: مستجدات التسجيل والخدمات الرقمية الجديدة.',
     date: 'إشعار رسمي: مارس 2026',
-    image: 'https://source.unsplash.com/800x600/?education,notice,school',
+    image: 'https://source.unsplash.com/featured/?academic-environment,classroom,education',
+    fallbackSources: [
+      'https://source.unsplash.com/featured/?education,announcement,campus',
+      'https://source.unsplash.com/featured/?classroom,notice,school',
+    ],
   },
 ];
 
@@ -160,8 +189,12 @@ function App() {
               ابدأ الآن <ArrowLeft size={18} />
             </button>
           </div>
-          <img
-            src="https://source.unsplash.com/900x700/?online-learning,student"
+          <SafeImage
+            src="https://source.unsplash.com/featured/?online-learning,student,laptop"
+            fallbackSources={[
+              "https://source.unsplash.com/featured/?distance-learning,student,technology",
+              "https://source.unsplash.com/featured/?education,online-class,laptop",
+            ]}
             alt="التعلم عن بعد"
             className="rounded-2xl h-72 w-full object-cover"
             loading="lazy"
@@ -178,8 +211,12 @@ function App() {
         </section>
 
         <section className="grid lg:grid-cols-2 gap-6 items-center bg-emerald-950 text-white rounded-3xl overflow-hidden">
-          <img
-            src="https://source.unsplash.com/900x700/?dashboard,e-learning,ui"
+          <SafeImage
+            src="https://source.unsplash.com/featured/?digital-learning,technology,education"
+            fallbackSources={[
+              "https://source.unsplash.com/featured/?online-learning,technology,screen",
+              "https://source.unsplash.com/featured/?education,technology,classroom",
+            ]}
             alt="واجهة التعلم الرقمي"
             className="h-full min-h-72 w-full object-cover"
             loading="lazy"
@@ -246,8 +283,12 @@ function App() {
             </div>
           </div>
 
-          <img
-            src="https://source.unsplash.com/900x700/?support,education,team"
+          <SafeImage
+            src="https://source.unsplash.com/featured/?education-support,team,academic"
+            fallbackSources={[
+              "https://source.unsplash.com/featured/?support-team,education,office",
+              "https://source.unsplash.com/featured/?helpdesk,students,education",
+            ]}
             alt="الدعم والمساعدة"
             className="rounded-2xl h-72 w-full object-cover"
             loading="lazy"

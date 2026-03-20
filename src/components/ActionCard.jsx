@@ -1,4 +1,6 @@
-const ActionCard = ({ icon: Icon, title, description, image }) => {
+import SafeImage from './SafeImage';
+
+const ActionCard = ({ icon: Icon, title, description, image, fallbackSources = [] }) => {
   return (
     <button className="w-full text-right bg-white rounded-xl border border-gray-200 p-5 hover:border-primary hover:shadow-sm transition">
       <div className="flex items-start gap-3">
@@ -8,8 +10,9 @@ const ActionCard = ({ icon: Icon, title, description, image }) => {
         <div className="flex-1">
           <h3 className="font-bold text-lg mb-1">{title}</h3>
           <p className="text-gray-600 text-sm mb-3">{description}</p>
-          <img
+          <SafeImage
             src={image}
+            fallbackSources={fallbackSources}
             alt={title}
             className="h-20 w-full rounded-lg object-cover"
             loading="lazy"
