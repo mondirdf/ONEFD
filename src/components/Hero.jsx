@@ -4,7 +4,7 @@ const Hero = () => {
       className="relative overflow-hidden border-b border-emerald-100"
       style={{
         backgroundImage:
-          "linear-gradient(110deg, rgba(2,44,34,.88), rgba(5,150,105,.72)), url('https://source.unsplash.com/1600x900/?student,laptop,education')",
+          "linear-gradient(110deg, rgba(2,44,34,.88), rgba(5,150,105,.72)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
