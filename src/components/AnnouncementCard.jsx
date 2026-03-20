@@ -1,7 +1,15 @@
-const AnnouncementCard = ({ title, date, image }) => {
+import SafeImage from './SafeImage';
+
+const AnnouncementCard = ({ title, date, image, fallbackSources = [] }) => {
   return (
     <article className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
-      <img src={image} alt={title} className="h-36 w-full object-cover" loading="lazy" />
+      <SafeImage
+        src={image}
+        fallbackSources={fallbackSources}
+        alt={title}
+        className="h-36 w-full object-cover"
+        loading="lazy"
+      />
       <div className="p-5">
         <p className="text-sm text-gray-500 mb-2">{date}</p>
         <h3 className="font-bold text-lg mb-4 leading-relaxed">{title}</h3>
