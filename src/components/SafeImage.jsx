@@ -8,7 +8,6 @@ const SafeImage = ({ src, alt, fallbackSources = IMAGE_FALLBACKS }) => {
 
   const initialSource = src || DEFAULT_IMAGE;
 
-  console.log('IMAGE:', src);
 
   const handleError = (event) => {
     const currentStep = Number(event.currentTarget.dataset.fallbackStep || 0);

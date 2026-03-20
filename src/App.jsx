@@ -25,14 +25,32 @@ import ServiceCard from './components/ServiceCard';
 import AnnouncementCard from './components/AnnouncementCard';
 import SafeImage from './components/SafeImage';
 import Footer from './components/Footer';
-import { DEFAULT_IMAGE, IMAGE_FALLBACKS } from './constants/images';
+import { DEFAULT_IMAGE, getImage, imageMap } from './constants/images';
 
-const STATIC_IMAGES = {
-  hero: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644',
-  student: 'https://images.unsplash.com/photo-1513258496099-48168024aec0',
-  onlineLearning: 'https://images.unsplash.com/photo-1584697964403-7d6f1c36c3f6',
-  books: DEFAULT_IMAGE,
-  classroom: 'https://images.unsplash.com/photo-1509062522246-3755977927d7',
+
+const landingImages = {
+  hero: getImage('hero'),
+  quickActions: {
+    registration: getImage('registration'),
+    download: getImage('download'),
+    bac: getImage('bac'),
+    examPrep: getImage('examPrep'),
+  },
+  sections: {
+    remoteLearning: getImage('students'),
+    digitalLearning: getImage('virtualLearning'),
+    support: getImage('support'),
+  },
+  services: {
+    learning: getImage('tracking'),
+    training: getImage('classroom'),
+    guidance: getImage('guidance'),
+    followUp: getImage('hero'),
+  },
+  announcements: {
+    results: getImage('news'),
+    registration: getImage('registration'),
+  },
 };
 
 const trustStats = [
@@ -46,25 +64,29 @@ const quickActions = [
     title: 'التسجيل عبر الإنترنت',
     description: 'بدء أو استكمال التسجيل بسهولة عبر خطوات واضحة.',
     icon: UserCheck,
-    image: STATIC_IMAGES.student,
+    image: landingImages.quickActions.registration,
+    fallbackSources: imageMap.registration,
   },
   {
     title: 'تحميل الدروس',
     description: 'تحميل الملفات، الدروس والوثائق الضرورية بسرعة.',
     icon: Download,
-    image: STATIC_IMAGES.books,
+    image: landingImages.quickActions.download,
+    fallbackSources: imageMap.download,
   },
   {
     title: 'تحضير البكالوريا',
     description: 'خطط دراسية وموارد مخصصة لاجتياز البكالوريا.',
     icon: GraduationCap,
-    image: STATIC_IMAGES.student,
+    image: landingImages.quickActions.bac,
+    fallbackSources: imageMap.bac,
   },
   {
     title: 'تحضير شهادة التعليم المتوسط',
     description: 'مراجعة شاملة وتمارين تطبيقية لشهادة التعليم المتوسط.',
     icon: BookOpen,
-    image: STATIC_IMAGES.classroom,
+    image: landingImages.quickActions.examPrep,
+    fallbackSources: imageMap.examPrep,
   },
 ];
 
@@ -73,25 +95,29 @@ const services = [
     title: 'جناح التعلم',
     description: 'فضاء موحد لإدارة الدروس، الواجبات، والتتبع اليومي للتعلم.',
     icon: School,
-    image: STATIC_IMAGES.onlineLearning,
+    image: landingImages.services.learning,
+    fallbackSources: imageMap.tracking,
   },
   {
     title: 'جناح التكوين',
     description: 'برامج تكوينية تدعم التطور الدراسي والمهارات المهنية.',
     icon: Briefcase,
-    image: STATIC_IMAGES.classroom,
+    image: landingImages.services.training,
+    fallbackSources: imageMap.classroom,
   },
   {
     title: 'إستشارات',
     description: 'استفد من التوجيه والإرشاد لتحسين المسار التعليمي.',
     icon: MessageCircle,
-    image: STATIC_IMAGES.student,
+    image: landingImages.services.guidance,
+    fallbackSources: imageMap.guidance,
   },
   {
     title: 'متابعة الملف',
     description: 'تتبع حالة الطلبات والملفات الإدارية بسهولة ووضوح.',
     icon: Layers,
-    image: STATIC_IMAGES.books,
+    image: landingImages.services.followUp,
+    fallbackSources: imageMap.hero,
   },
 ];
 
@@ -117,12 +143,14 @@ const announcements = [
   {
     title: 'إعلانات هامة: تحديثات نتائج المتعلمين للفصل الحالي.',
     date: 'آخر تحديث: مارس 2026',
-    image: STATIC_IMAGES.classroom,
+    image: landingImages.announcements.results,
+    fallbackSources: imageMap.news,
   },
   {
     title: 'إعلانات هامة: مستجدات التسجيل والخدمات الرقمية الجديدة.',
     date: 'إشعار رسمي: مارس 2026',
-    image: STATIC_IMAGES.classroom,
+    image: landingImages.announcements.registration,
+    fallbackSources: imageMap.registration,
   },
 ];
 
@@ -135,7 +163,7 @@ const contact = {
 function App() {
   return (
     <div dir="rtl" className="min-h-screen bg-gradient-to-b from-emerald-50/50 via-white to-white">
-      <Hero />
+      <Hero backgroundImage={landingImages.hero} />
 
       <main className="max-w-6xl mx-auto px-4 py-10 md:py-14 space-y-12">
         <section className="grid md:grid-cols-3 gap-4 -mt-20 relative z-10">
@@ -171,7 +199,7 @@ function App() {
             </button>
           </div>
           <div className="h-72 w-full">
-            <SafeImage src={STATIC_IMAGES.onlineLearning || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt="التعلم عن بعد" />
+            <SafeImage src={landingImages.sections.remoteLearning || DEFAULT_IMAGE} fallbackSources={imageMap.students} alt="التعلم عن بعد" />
           </div>
         </section>
 
@@ -186,7 +214,7 @@ function App() {
 
         <section className="grid lg:grid-cols-2 gap-6 items-center bg-emerald-950 text-white rounded-3xl overflow-hidden">
           <div className="h-full min-h-72 w-full">
-            <SafeImage src={STATIC_IMAGES.onlineLearning || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt="واجهة التعلم الرقمي" />
+            <SafeImage src={landingImages.sections.digitalLearning || DEFAULT_IMAGE} fallbackSources={imageMap.virtualLearning} alt="واجهة التعلم الرقمي" />
           </div>
           <div className="p-6 md:p-8">
             <SectionTitle title="التعليم الرقمي" subtitle="حلول ذكية لتجربة تعليمية تفاعلية" className="text-white" subtitleClassName="text-emerald-100" />
@@ -251,7 +279,7 @@ function App() {
           </div>
 
           <div className="h-72 w-full">
-            <SafeImage src={STATIC_IMAGES.hero || DEFAULT_IMAGE} fallbackSources={IMAGE_FALLBACKS} alt="الدعم والمساعدة" />
+            <SafeImage src={landingImages.sections.support || DEFAULT_IMAGE} fallbackSources={imageMap.support} alt="الدعم والمساعدة" />
           </div>
         </section>
 
