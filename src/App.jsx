@@ -16,6 +16,7 @@ import {
   Clock3,
   Layers,
   ArrowLeft,
+  LifeBuoy,
 } from 'lucide-react';
 import Hero from './components/Hero';
 import SectionTitle from './components/SectionTitle';
@@ -35,21 +36,25 @@ const quickActions = [
     title: 'التسجيل عبر الإنترنت',
     description: 'بدء أو استكمال التسجيل بسهولة عبر خطوات واضحة.',
     icon: UserCheck,
+    image: 'https://source.unsplash.com/400x300/?student,registration',
   },
   {
     title: 'تحميل',
     description: 'تحميل الملفات، الدروس والوثائق الضرورية بسرعة.',
     icon: Download,
+    image: 'https://source.unsplash.com/400x300/?education,documents,laptop',
   },
   {
     title: 'تحضير البكالوريا',
     description: 'خطط دراسية وموارد مخصصة لاجتياز البكالوريا.',
     icon: GraduationCap,
+    image: 'https://source.unsplash.com/400x300/?students,study,exam',
   },
   {
     title: 'تحضير شهادة التعليم المتوسط',
     description: 'مراجعة شاملة وتمارين تطبيقية لشهادة التعليم المتوسط.',
     icon: BookOpen,
+    image: 'https://source.unsplash.com/400x300/?books,learning,classroom',
   },
 ];
 
@@ -58,21 +63,25 @@ const services = [
     title: 'جناح التعلم',
     description: 'فضاء موحد لإدارة الدروس، الواجبات، والتتبع اليومي للتعلم.',
     icon: School,
+    image: 'https://source.unsplash.com/500x350/?e-learning,platform,education',
   },
   {
     title: 'جناح التكوين',
     description: 'برامج تكوينية تدعم التطور الدراسي والمهارات المهنية.',
     icon: Briefcase,
+    image: 'https://source.unsplash.com/500x350/?training,skills,students',
   },
   {
     title: 'إستشارات',
     description: 'استفد من التوجيه والإرشاد لتحسين المسار التعليمي.',
     icon: MessageCircle,
+    image: 'https://source.unsplash.com/500x350/?consultation,education,mentor',
   },
   {
     title: 'متابعة الملف',
     description: 'تتبع حالة الطلبات والملفات الإدارية بسهولة ووضوح.',
     icon: Layers,
+    image: 'https://source.unsplash.com/500x350/?dashboard,workflow,school',
   },
 ];
 
@@ -204,6 +213,11 @@ function App() {
 
         <section className="grid lg:grid-cols-2 gap-6 items-center bg-white rounded-3xl border border-gray-200 p-6 md:p-8">
           <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="bg-emerald-100 text-primary p-2 rounded-lg">
+                <LifeBuoy size={16} />
+              </span>
+            </div>
             <SectionTitle title="تحتاج مساعدة؟" subtitle="فريق الدعم جاهز للإجابة على استفساراتك" />
             <div className="space-y-4 text-gray-700">
               <div className="flex items-start gap-2">
